@@ -1,0 +1,42 @@
+.trend-box{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.trend-title{
+        display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.cloud-image{
+    width:80%;
+}
+.cloud-title{
+    margin-top:30px;
+    width:100%;
+    font-size:20px;
+    text-align: center;
+}
+.trend-title{
+    margin-top:30px;
+}
+.trend-title > img{
+    width:50px;
+}
+.trend-title{
+    font-size:17px;
+}
+.cloud-menu{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0px 20px;
+    margin-top:30px;
+    border-radius: 10px;
+    border: 0.5px solid rgba(15, 32, 65, 0.24);
+    padding:10px;
+}
+.cloud-menu > button{
+    width: 10%;
+    margin : 0.3% 3%;
+}

@@ -1,0 +1,147 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'book/css/category-common.css' %}">
+    <link rel="stylesheet" href="{% static 'book/css/book-detail.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+<div class="container">
+    <div class="side-bar">
+
+    {% for main_category in main_category_list %}
+     <button class="dropdown-btn">
+         {{ main_category.name }}
+         <i class="fa fa-angle-down"></i>
+     </button>
+    <div class="dropdown-container">
+          {% for key, value in sub_category_dict.items %}
+              {% for sub_category in value %}
+                {% if sub_category.main_category.id == main_category.id %}
+            <div><a href="/category/{{sub_category.id}}"> - {{sub_category.name}}</a></div>
+        {% endif %}
+        {% endfor %}
+      {% endfor %}
+
+
+    </div>
+    {% endfor %}
+
+
+    </div>
+    <div class="book-detail">
+        <div class="info-first-container">
+            <img src="/static/book/img/cover/{{book.cover_image}}" class="cover-image">
+           <div class="book-detail-info">
+                <div class="book-title">{{book.title}}</div>
+                <div class="book-author"><span class="info-title">저자 | </span>{{book.author}}</div>
+                <div class="book-publisher"><span class="info-title">출판사 |</span> {{book.publisher}}</div>
+                <div class="book-publish-date"><span class="info-title">출판일자 |</span>  {{book.publish_date}}</div>
+            </div>
+        </div>
+        <div class="info-main">
+                <div class="bs-info">
+                    <div class="bs-info-main-title">[ 서점 통합 정보 ]</div>
+                    <div class="book-lowest-price"><span class="bs-info-title">최저가 |</span>  {{book.lowest_price}} 원</div>
+                    <div class="total_review"><span class="bs-info-title">전체 리뷰 |</span>  {{book.total_review}} 개</div>
+                    <div class="book-avg-star"><span class="bs-info-title">평균 별점 |</span>  {{book.avg_star}}</div>
+                </div>
+             <div class="book-store-info">
+                <div class="book-store-info-detail">
+                   <img src="/static/book/img/aladin.png">
+                    <div class="book-store-info-detail">
+                        <div>가격 | {{book.aladin_price}}</div>
+                        <div>️리뷰 | {{book.aladin_review}}</div>
+                        <div>별점 | ⭐️ ️{{book.aladin_star}}</div>
+                    </div>
+                </div>
+                <div class="book-store-info-detail">
+                  <img src="/static/book/img/kyobo.png">
+                        <div>가격 | {{book.kyobo_price}}</div>
+                        <div>️리뷰 |  {{book.kyobo_review}} </div>
+                        <div>별점 | ⭐️ ️{{book.kyobo_star}} </div>
+                </div>
+                <div class="book-store-info-detail">
+                   <img src="/static/book/img/yes.png">
+                        <div>가격 | {{book.yes24_price}}</div>
+                        <div>️리뷰 |  {{book.yes24_review}}</div>
+                        <div>별점 | ⭐️ ️{{book.yes24_star}}</div>
+                </div>
+                <div class="book-store-info-detail">
+                  <img src="/static/book/img/inter.png">
+                        <div>가격 | {{book.interpark_price}}</div>
+                        <div>️리뷰 |  {{book.interpark_review}}</div>
+                        <div>별점 | ️⭐️ {{book.interpark_star}}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="book-sub-title">책 소개</div>
+        <hr>
+        <div class="book-intro">{{book.intro|linebreaks}}</div>
+                <div class="book-sub-title">추천 도서</div>
+
+                <hr>
+        <div class="recommend-container">
+        {% for recommend_book in book_recommend_list %}
+                <div class="recommend-box">
+                    <div class="recommend-book-cover-image"><a href="/book/{{recommend_book.id}}">
+                        <img src="/static/book/img/cover/{{recommend_book.cover_image}}"></a>
+                    </div>
+                                         <div class="recommend-book-title"><a href="/book/{{recommend_book.id}}">{{recommend_book.title}}</a></div>
+
+                        <div>{{recommend_book.author}}<span> | </span>{{recommend_book.publisher}}</div>
+                </div>
+            {% endfor %}
+            </div>
+
+        <div class="book-sub-title">전체 리뷰 : 도서 플랫폼 통합 리뷰를 제공합니다</div>
+                <hr>
+                <div class="review-container">
+        {% for review in book_review_list %}
+                <div class="review-box">
+                    {% if review.star >= 5.0 %}
+                        <div class="review-star">⭐⭐⭐⭐⭐</div>
+                    {% elif review.star >= 4.0 %}
+                        <div class="review-star">⭐⭐⭐⭐</div>
+                    {% elif review.star >= 3.0 %}
+                        <div class="review-star">⭐⭐⭐</div>
+                    {% elif review.star >= 2.0 %}
+                        <div class="review-star">⭐⭐</div>
+                    {% else %}
+                        <div class="review-star">⭐</div>
+                    {% endif %}
+                    <div class="review-content">{{review.content|linebreaks}}</div>
+                </div>
+            {% endfor %}
+            </div>
+
+
+
+
+
+    </div>
+</div>
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+
+
+{% endblock %}

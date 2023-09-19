@@ -1,0 +1,35 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+  <link rel="stylesheet" href="{% static 'book/css/category.css' %}">
+  <link rel="stylesheet" href="{% static 'book/css/category-common.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+<div class="container">
+    <div class="category">
+        {% for main_category in main_category_list %}
+            <div class="category-box">
+            <div class="main-category">
+                {{ main_category.name }}
+            </div>
+            <div class="sub-category">
+                {% for key, value in sub_category_dict.items %}
+                    {% for sub_category in value %}
+                        {% if sub_category.main_category.id == main_category.id %}
+                            <div><a href="/category/{{sub_category.id}}"> - {{sub_category.name}}</a></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+          </div>
+
+        {% endfor %}
+        </div>
+</div>
+
+
+
+
+{% endblock %}

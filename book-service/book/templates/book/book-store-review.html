@@ -1,0 +1,105 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+  <link rel="stylesheet" href="{% static 'book/css/book-store.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+    <div class="chart-menu">
+            <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/star' ">메인카테고리별 도서 별점 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/price' ">메인카테고리별 도서 가격 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/review' ">메인카테고리별 도서 리뷰 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/star-all' ">통합 도서 별점 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/price-all' ">통합 도서 가격 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/review-all' ">통합 도서 리뷰 분석</button>
+    </div>
+	<div class="chart">
+        <div class="chart-title">메인카테고리별 도서 리뷰 분석</div>
+	  <canvas id="myChart"></canvas>
+	</div>
+<script>
+kyobo_review_values = []
+aladin_review_values = []
+yes_review_values =[]
+interpark_review_values = []
+labels = []
+
+{% for res in main_category_review_result %}
+		kyobo_review_values.push( {{res.kyobo}} )
+		aladin_review_values.push( {{res.aladin}} )
+        yes_review_values.push( {{res.yes}} )
+        interpark_review_values.push( {{res.interpark}} )
+		labels.push( "{{res.label}}" )
+
+{% endfor %}
+const data = {
+  labels: labels,
+  datasets: [{
+    label: '알라딘',
+    data: aladin_review_values ,
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+
+    ],
+    borderWidth: 1
+  },{
+    label: '교보문고',
+    data: kyobo_review_values ,
+    backgroundColor: [
+      'rgba(255, 205, 86, 0.2)',
+    ],
+    borderColor: [
+      'rgb(255, 205, 86)',
+    ],
+    borderWidth: 1
+  },
+  {
+    label: 'Yes24',
+    data: yes_review_values ,
+    backgroundColor: [
+      'rgba(75, 192, 192, 0.2)'
+,
+    ],
+    borderColor: [
+       'rgb(75, 192, 192)',
+    ],
+    borderWidth: 1
+  },
+  {
+    label: '인터파크도서',
+    data: interpark_review_values ,
+    backgroundColor: [
+      'rgba(54, 162, 235, 0.2)',
+
+    ],
+    borderColor: [
+       'rgb(54, 162, 235)',
+    ],
+    borderWidth: 1
+  }]
+};
+const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+
+const myChart = new Chart(
+document.getElementById('myChart'),
+config
+);
+</script>
+
+
+{% endblock %}

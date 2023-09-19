@@ -1,0 +1,63 @@
+
+ .book-list{
+     width:100%;
+     padding: 10px 50px;
+     display:flex;
+     flex-wrap:wrap;
+     justify-content: center;
+ }
+
+.book-title > a{
+ color: #1f1f1f;
+}
+
+.book-detail{
+    display: flex;
+    padding:10px 5px;
+    width:100%;
+    height:160px;
+    font-size:15px;
+    border-bottom:1px solid #ececec;
+
+}
+.book-cover-image{
+    margin:0px;
+}
+
+.book-detail-info{
+    padding-left:30px;
+    padding-top:5px;
+}
+.book-detail-info span{
+    color: #c5c5c5;
+    display: inline-block;
+    padding:2px 10px;
+
+}
+.book-title{
+    font-size:16px !important;
+    font-weight: bold;
+}
+.book-detail img{
+   height:140px;
+    border: 1px solid #dedede;
+}
+.book-lowest-price, .book-avg-star{
+
+}
+.book-intro-info{
+    font-size:13px;
+    color:#646464;
+}
+
+.book-add-info{
+    color: #2a5091;
+}
+
+
+.search-title{
+    width:100%;
+    text-align: center;
+    padding:20px;
+    font-size:20px;
+}

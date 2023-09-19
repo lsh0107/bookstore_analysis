@@ -1,0 +1,24 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'book/css/trend.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+    <div class="cloud-menu">
+        {% for main_category in main_category_list %}
+            <button type="button" class="btn btn-light" onclick = "location.href = '/trend-detail/{{main_category.id}}' ">{{main_category.name}}</button>
+        {% endfor %}
+    </div>
+    <div class="trend-title">
+        <img src="/static/book/img/book-cloud.png"> 베스트셀러 키워드 워드클라우드 분석
+    </div>
+    <div class="trend-box">
+        {% for main_category in main_category_list %}
+           <div class="cloud-title"> {{main_category.name}} 분야 워드클라우드</div>
+            <img src="/static/book/img/cloud/cloud-{{main_category.id}}.jpg" class="cloud-image">
+        {% endfor %}
+
+    </div>
+{% endblock %}

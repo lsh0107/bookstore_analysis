@@ -1,0 +1,77 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+  <link rel="stylesheet" href="{% static 'book/css/book-store.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+    <div class="chart-menu">
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/star' ">메인카테고리별 도서 별점 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/price' ">메인카테고리별 도서 가격 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/review' ">메인카테고리별 도서 리뷰 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/star-all' ">통합 도서 별점 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/price-all' ">통합 도서 가격 분석</button>
+        <button type="button" class="btn btn-light" onclick = "location.href = '/book-store/review-all' ">통합 도서 리뷰 분석</button>
+
+    </div>
+	<div class="chart">
+        <div class="chart-title">통합 도서 별점 분석</div>
+	  <canvas id="myChart" class="all"></canvas>
+	</div>
+<script>
+
+values = []
+
+values.push( {{star_all.aladin}} )
+values.push( {{star_all.kyobo}} )
+values.push( {{star_all.yes}} )
+values.push( {{star_all.interpark}} )
+
+
+const labels = ["알라딘","교보문고","Yes24","인터파크도서"];
+const data = {
+  labels: labels,
+  datasets: [{
+    data: values,
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+    ],
+    borderWidth: 1
+  }]
+};
+
+const config = {
+  type: 'bar',
+  data: data,
+  options: {
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+
+const myChart = new Chart(
+document.getElementById('myChart'),
+config
+);
+</script>
+
+
+{% endblock %}

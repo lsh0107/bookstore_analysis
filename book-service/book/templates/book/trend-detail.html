@@ -1,0 +1,20 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'book/css/trend.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+    <div class="cloud-menu">
+        {% for cloud in word_cloud_list %}
+            <button type="button" class="btn btn-light" onclick = "location.href = '/trend-detail/{{cloud.id}}' ">{{cloud.main_category}}</button>
+        {% endfor %}
+    </div>
+
+    <div class="trend-box">
+       <div class="cloud-title"> " {{word_cloud.main_category}} " 분야 워드클라우드</div>
+        <img src="/static/book/img/cloud/{{word_cloud.image}}" class="cloud-image">
+
+    </div>
+{% endblock %}
