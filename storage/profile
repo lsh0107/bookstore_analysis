@@ -1,0 +1,35 @@
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+if [ "${PS1-}" ]; then
+  if [ "${BASH-}" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+TMOUT=7200
+
+export SARPK_HOME = /home/hadoop/spark-2.4.8-bin-hadoop2.7
+export PATH=$PATH:$SPARK_HOME/bin
+export HADOOP_HOME = /home/hadoop/hadoop-2.7.6
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$LD_LIBRARY_PATH export PATH=$PATH:$SPARK_HOME/bin:$HADDOP_HOME/bin:$HADOOP_HOME/sbin
