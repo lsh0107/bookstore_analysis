@@ -1,0 +1,27 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'book/css/search.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+		<div class="search-title">
+			" {{keyword}} " 검색 결과 {{len}} 건
+        </div>
+		<div class="book-list">
+            {% for book in book_list %}
+                <div class="book-detail">
+                    <div class="book-cover-image"><a href="/book/{{book.id}}">
+                            <img src="/static/book/img/cover/{{book.cover_image}}"></a>
+                    </div>
+                    <div class="book-detail-info">
+                        <div class="book-title"><a href="/book/{{book.id}}">{{book.title}}</a></div>
+                        <div class="book-basic-info">{{book.author}}<span> | </span>{{book.publisher}}<span> | </span>{{book.publish_date}}</div>
+                        <div class="book-add-info">최저가 {{book.lowest_price}}<span> | </span> 리뷰 {{book.total_review}} <span> | </span>⭐️ {{book.avg_star}}</div>
+                        <div class="book-intro-info">{{book.intro|slice:":200"}} ...</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}

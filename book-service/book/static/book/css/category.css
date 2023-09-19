@@ -1,0 +1,30 @@
+
+.category{
+    margin-top:30px;
+    padding-top:20px;
+    background-color: #afb2c221;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:30px;
+
+}
+.category-box{
+    padding-top: 10px;
+    padding-bottom:10px;
+    width:20%;
+
+}
+.main-category{
+    font-size:20px;
+    color:#27488A;
+    padding-bottom: 5px;
+    padding-left:50px;
+
+}
+.sub-category{
+    padding-left:50px;
+}
+.sub-category > div{
+    padding-top:5px;
+}

@@ -1,0 +1,32 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+  <link rel="stylesheet" href="{% static 'book/css/bestseller.css' %}">
+  {% endblock %}
+</head>
+{% block content %}
+	<div class="main-box">
+            {% for main_category in main_category_list %}
+     <div class="main-category-title">
+         {{ main_category.name }}
+     </div>
+        <hr>
+    <div class="category-book-box">
+        {% for key, value in bestseller_list.items %}
+            {% for bestseller in value %}
+                {% if bestseller.main_category.id == main_category.id %}
+                <div class="book-box"><a href="/book/{{bestseller.book.id}}">
+                    <div class="image-box">
+                        <img src="/static/book/img/cover/{{bestseller.book.cover_image}}" class="cover-image">
+                    </div>
+                    <div class="book-title">{{bestseller.book.title}} <span>| {{bestseller.book.author}}</span></div>
+                </a></div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "book/base.html" %}
+<head>
+  {% load static %}
+  {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'book/css/category-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'book/css/category-common.css' %}">
+
+  {% endblock %}
+</head>
+{% block content %}
+<div class="container">
+    <div class="side-bar">
+
+    {% for main_category in main_category_list %}
+     <button class="dropdown-btn">
+         {{ main_category.name }}
+         <i class="fa fa-angle-down"></i>
+     </button>
+    <div class="dropdown-container">
+        {% for key, value in sub_category_dict.items %}
+            {% for sub_category in value %}
+                {% if sub_category.main_category.id == main_category.id %}
+                <div><a href="/category/{{sub_category.id}}"> - {{sub_category.name}}</a></div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+    {% endfor %}
+
+
+    </div>
+    <div class="category-main">
+        <div class="list-title">
+            {{selected_sub_category.name}}
+        </div>
+        <div class="book-list">
+            {% for book in book_list %}
+                <div class="book-detail">
+                    <div class="book-cover-image"><a href="/book/{{book.id}}">
+                            <img src="/static/book/img/cover/{{book.cover_image}}"></a>
+                    </div>
+                    <div class="book-detail-info">
+                        <div class="book-title"><a href="/book/{{book.id}}">{{book.title}}</a></div>
+                        <div class="book-basic-info">{{book.author}}<span> | </span>{{book.publisher}}<span> | </span>{{book.publish_date}}</div>
+                        <div class="book-add-info">최저가 {{book.lowest_price}}<span> | </span> 리뷰 {{book.total_review}} <span> | </span>⭐️ {{book.avg_star}}</div>
+                        <div class="book-intro-info">{{book.intro|slice:":200"}} ...</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,115 @@
+html, body{
+    font-family: 'Nanum Gothic', sans-serif;
+    height:100%;
+}
+.header{
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+}
+.header > div{
+    width:34%;
+}
+.logo{
+    display:flex;
+    padding:30px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+.logo-title{
+    margin-top:10px;
+    font-size: 40px;
+    margin-left:10px;
+    font-family: 'Sunflower', sans-serif;
+}
+.logo-img{
+    width: 60px;
+    height:60px;
+    margin-left:100px;
+}
+
+.search-input{
+    margin-top:20px;
+    width:500px;
+    align-items: center;
+    border: 3px solid #27488A;
+    border-radius: 40px !important;
+    padding: 0 20px;
+
+    
+}
+.search-input input{
+    background-color: transparent;
+    height:50px;
+    border:none;
+}
+.search-input i{
+    font-size:25px;
+    color:#27488A;
+    cursor: pointer;
+    z-index: 1;
+}
+.search-input input:focus{
+    border:none;
+    box-shadow:none;
+    background-color: transparent;
+
+}
+.menu{
+    margin-top:15px;
+    background-color: #27488A;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index:999;
+
+
+}
+
+.menu >ul{
+    display: flex;
+    align-items: center;
+    margin:0px;
+    height:100%;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.menu > ul >li{
+    margin:0px;
+    font-size:18px;
+    color:rgba(255, 255, 255, 0.99);
+    font-weight: bold;
+    margin: 0 60px;
+    list-style: none;
+    display: inline-block;
+}
+.menu a{
+    color:white;
+    cursor:pointer;
+
+
+}
+.menu a:hover{
+    color:white;
+
+}
+
+.main{
+
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+
+
+
+}

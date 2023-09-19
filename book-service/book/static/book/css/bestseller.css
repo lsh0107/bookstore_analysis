@@ -1,0 +1,59 @@
+.main-box{
+    margin:30px 60px;
+    background-color: #afb2c221;
+    border-radius: 10px;
+
+}
+.category-book-box{
+    display: flex;
+    flex-wrap: wrap;
+    margin:2%;
+    justify-content: center;
+}
+.cover-image{
+    height:80%;
+}
+.book-box{
+    font-size:15px;
+    width:18%;
+    justify-content: center;
+    display: flex;
+    margin:10px;
+}
+
+.image-box{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+.book-box div{
+    text-align: center;
+}
+
+.book-title{
+    color:black;
+    font-width: 600;
+
+}
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+
+}
+.book-title > span{
+    color:gray;
+}
+
+.main-category-title{
+    padding:20px 50px;
+    padding-bottom: 0px;
+    font-weight: 800;
+    font-size: 20px;
+
+}
+hr{
+    margin:20px 30px;
+}
