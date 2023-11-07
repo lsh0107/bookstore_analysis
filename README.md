@@ -28,8 +28,6 @@
 * 서점 플랫폼 데이터 분석
 * 트렌드 키워드 분석
 
-## Service & Visualize
-[책나와](http://booknawa.seohyuni.com/)
 
 ### Main Page
 <img width="1423" alt="image" src="https://user-images.githubusercontent.com/68395698/174063121-a137b57e-c3d6-4ebe-9a6d-a093d757f3e6.png">
